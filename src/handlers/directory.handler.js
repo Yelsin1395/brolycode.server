@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { buildPath } from '../utils/common.util';
-import { payload, errorLog } from '../utils/response.util';
+import { payload, errorLog, AppError } from '../utils/response.util';
 
 export default class DirectoryHandler {
   constructor({ configs }) {
@@ -38,6 +38,30 @@ export default class DirectoryHandler {
       fs.mkdirSync(path.join(dirPath.absolutePath, folderName));
 
       return payload({ status: 201, data: { message: 'Directory create' } });
+    } catch (error) {
+      console.error(error);
+      return errorLog(error);
+    }
+  }
+
+  async deleteDirectory(accessPath, fileName) {
+    try {
+      if (!accessPath && !fileName) {
+        AppError(400, 'ERR_DIRECTORY_ROOT', `Can't delete root folder`);
+      }
+
+      const dirPath = buildPath(accessPath, this.homeCloudStorage);
+
+      if (fileName) {
+        await fs.promises.unlink(path.join(dirPath.absolutePath, fileName));
+      } else {
+        await fs.promises.rmdir(dirPath.absolutePath);
+      }
+
+      const message = fileName
+        ? `File ${fileName} removed`
+        : `Directory ${dirPath.relativePath} removed`;
+      return payload({ status: 200, data: { dirPath, message } });
     } catch (error) {
       console.error(error);
       return errorLog(error);

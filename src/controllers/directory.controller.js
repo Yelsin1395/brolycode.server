@@ -17,4 +17,11 @@ export default class DirectoryController {
     const data = await _directoryHandler.createDirectory(path, folderName);
     return res.status(data.status).send(data);
   }
+
+  async deleteDirectory(req, res) {
+    const { path } = req.params;
+    const { fileName } = req.body;
+    const data = await _directoryHandler.deleteDirectory(path, fileName);
+    return res.status(data.status).send(data);
+  }
 }

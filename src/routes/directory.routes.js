@@ -5,6 +5,7 @@ module.exports = function ({ directoryController }) {
 
   router.get('/:path?', directoryController.getContentDirectory);
   router.post('/create/:path?', directoryController.createDirectory);
+  router.delete('/delete/:path?', directoryController.deleteDirectory);
 
   return router;
 };
