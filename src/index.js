@@ -1,5 +1,5 @@
 import figlet from 'figlet';
-import { errorLog } from './utils';
+import { errorLog } from './utils/response.util';
 import container from './container';
 const app = container.resolve('server');
 
@@ -12,7 +12,7 @@ async function appStart() {
 
     await app.start();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return errorLog(error);
   }
 }

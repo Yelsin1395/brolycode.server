@@ -6,14 +6,14 @@ import compression from 'compression';
 import morgan from 'morgan';
 import { errorMiddleware, notFoundMiddleware } from '../middlewares/exception.middleware';
 
-module.exports = function ({ homeRoutes }) {
+module.exports = function ({ homeRoutes, uploadRoutes }) {
   const router = express.Router();
   const apiRoutes = express.Router();
 
   //middleware default
   apiRoutes
     .use(express.json())
-    .use(express.urlencoded({ extended: false }))
+    .use(express.urlencoded({ extended: true }))
     .use(cors())
     .use(helmet())
     .use(compression())
@@ -28,6 +28,7 @@ module.exports = function ({ homeRoutes }) {
 
   //endpoints
   apiRoutes.use('/home', homeRoutes);
+  apiRoutes.use('/upload', uploadRoutes);
 
   return router;
 };

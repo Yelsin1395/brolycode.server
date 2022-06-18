@@ -1,4 +1,4 @@
-import { errorLog } from '../utils';
+import { errorLog } from '../utils/response.util';
 
 export const errorMiddleware = (err, req, res, next) => {
   const httpStatus = err.status || 500;

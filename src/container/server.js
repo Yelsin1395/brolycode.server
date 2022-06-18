@@ -1,5 +1,5 @@
 import express from 'express';
-import { errorLog } from '../utils';
+import { errorLog } from '../utils/response.util';
 
 export default class Server {
   constructor({ configs, routes }) {
@@ -15,7 +15,7 @@ export default class Server {
         console.log(`${APPLICATION_NAME} running on port ${PORT}`);
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return errorLog(error);
     }
   }
