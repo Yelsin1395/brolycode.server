@@ -6,7 +6,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import { errorMiddleware, notFoundMiddleware } from '../middlewares/exception.middleware';
 
-module.exports = function ({ homeRoutes, uploadRoutes, directoryRoutes }) {
+module.exports = function ({ homeRoutes, uploadRoutes, directoryRoutes, syncRoutes }) {
   const router = express.Router();
   const apiRoutes = express.Router();
 
@@ -30,6 +30,7 @@ module.exports = function ({ homeRoutes, uploadRoutes, directoryRoutes }) {
   apiRoutes.use('/home', homeRoutes);
   apiRoutes.use('/upload', uploadRoutes);
   apiRoutes.use('/directory', directoryRoutes);
+  apiRoutes.use('/sync', syncRoutes);
 
   return router;
 };
