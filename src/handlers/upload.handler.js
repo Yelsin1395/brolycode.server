@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
-import { payload, errorLog, AppError } from '../utils/response.util';
 import { buildPath } from '../utils/common.util';
+import { payload, errorLog, AppError } from '../utils/response.util';
 
 export default class UploadHandler {
   constructor({ configs }) {
