@@ -16,3 +16,18 @@ export const errorLog = (errorData, status) => {
     return errorData;
   }
 };
+
+/**
+ * 
+ * @param {number} status
+ * @param {string} errorCode
+ * @param {string} errorMessage
+ */
+
+export function AppError(status, errorCode, errorMessage) {
+  const error = new Error();
+  error.status = status;
+  error.code = errorCode;
+  error.message = errorMessage;
+  throw error;
+}

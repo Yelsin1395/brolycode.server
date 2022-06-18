@@ -1,4 +1,4 @@
-import { payload } from '../utils';
+import { payload } from '../utils/response.util';
 
 export default class HomeHandler {
   constructor({ configs }) {

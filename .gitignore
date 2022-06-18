@@ -1,1 +1,8 @@
 node_modules
+dist
+.env
+.env.test
+.env.development.local
+logs
+*.log
+npm-debug.log*
